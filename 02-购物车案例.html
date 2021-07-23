@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    table{
+      border: 1px #999 solid;
+      border-collapse: collapse;
+    }
+  </style>
+</head>
+<body>
+  <!-- 编程范式: 声明式编程√/ 命令式编程 -->
+  <!-- 编程范式: 面向对象编程(第一公民:对象) / 函数式编程(第一公民:函数)-->
+  <div id="app">
+    <div v-if="books.length">
+      <table border="1" cellpadding="6">
+        <thead style="background-color: #F6F6F6;" class="head">
+          <tr>
+            <th></th>
+            <th>书籍名称</th>
+            <th>出版日期</th>
+            <th>价格</th>
+            <th>购买数量</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- <tr v-for="item in books">
+            <td v-for="value in item">{{value}}</td>
+          </tr> -->
+          <!-- 外层遍历数组,内层遍历对象 -->
+          <tr v-for="item,index in books">
+            <td >{{item.id}}</td>
+            <td >{{item.name}}</td>
+            <td >{{item.date}}</td>
+            <!-- <td >{{'￥' + item.price.toFixed(2)}}</td> -->
+            <!-- <td >{{getFinalPrice(item.price)}}</td> -->
+            <td >{{item.price | getPrice}}</td>
+            <td >
+              <button v-on:click="decrement(index)" v-bind:disabled="item.count<2">-</button>
+              {{item.count}}
+              <button @click="increment(index)">+</button>
+            </td>
+            <td>
+              <button @click="remove(index)">移除</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      总价:{{totalPrice | getPrice}}
+    </div>
+    <h2 v-else>购物车为空</h2>
+  </div>
+
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+  var app = new Vue({
+    el:'#app',
+    data:{
+      books:[
+        {
+          id:1,
+          name:'《算法导论》',
+          date:'2006-9',
+          price:85,
+          count:1
+        },
+        {
+          id:2,
+          name:'《UNIX编程艺术》',
+          date:'2006-2',
+          price:59,
+          count:1
+        },
+        {
+          id:3,
+          name:'《代码大全》',
+          date:'2006-3',
+          price:128,
+          count:1
+        }
+      ]
+    },
+    methods:{
+      // getFinalPrice(price){
+      //   return '￥' + price.toFixed(2)
+      // }
+      decrement(index){
+        // if(this.books[index].count>){
+          this.books[index].count--
+        // }
+      },
+      increment(index){
+        this.books[index].count++
+      },
+      remove(index){
+        this.books.splice(index,1)
+      }
+    },
+    computed:{
+      totalPrice(){
+        let price = 0;
+        // for(let i = 0; i < this.books.length; i++){
+
+        // for(let i in this.books){  //遍历索引 不推荐用于数组
+        //   const book = this.books[i]
+        //   price += book.price * book.count
+        // }
+
+          for(let item of this.books){  //遍历值
+            price += item.price * item.count
+          }
+        return price
+
+        //price.filter
+        //price.map
+        //price.reduce
+      }
+    },
+    filters:{   //过滤器
+      // 自动传参数
+      getPrice(price){
+        return '￥' + price.toFixed(2)
+      }
+    }
+  })
+</script>
+
+</html>

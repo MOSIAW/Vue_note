@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>经典案例</title>
+  <style>
+    .change{
+      color: brown;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <li v-for="(item,index) in list"
+        :class="{change:currentIndex === index}"
+        @click="onclick(index)">
+      {{index}}.{{item}}
+    </li>
+  </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+  var app = new Vue({
+    el:"#app",
+    data:{
+      list:['a','b','c'],
+      currentIndex : 0
+    },
+    methods:{
+      onclick(index){
+        this.currentIndex = index;
+      }
+    }
+  })
+</script>
+</html>

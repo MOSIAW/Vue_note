@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>radio  checkbox  select</title>
+</head>
+<body>
+  <!-- v-model原理:1.v-bind绑定value属性   2.v-on指令绑定input事件 -->
+  <!-- :value 由v-bind单向绑定 -->
+  <!-- 常应用于表单 绑定的数据 绑定 表单元素的值 -->
+  <div id="app" >
+    <!-- 修饰符v-model.lazy避免频繁更新 -->
+    <input type="text"  v-model.lazy="message">
+    <!-- <input type="text"  v-bind:value="message" v-on:input="message = $event.target.value"> -->
+    <h2>{{message}}</h2>
+    <hr>
+    <!-- .number v-model传入默认string类型 -->
+    <input type="text" v-model.number="age">
+    <h2>{{age}}类型：{{typeof age}}</h2>
+    <hr>
+    <!-- .trim删除空格 -->
+    <input type="text" v-model.trim="message">
+    <h2>自动去除空格{{message}}</h2>
+    <hr>
+
+    <br>
+    <label for="licence">
+      <input type="checkbox" id="licence" v-model="isAgree">同意协议
+    </label>
+    <h2>{{isAgree}}</h2>
+    <!-- 禁用 -->
+    <button :disabled="!isAgree">下一步是否能选</button>
+    <br><hr>
+
+    <br>
+    <input type="checkbox" value="篮球" v-model="hobbies">篮球
+    <input type="checkbox" value="足球" v-model="hobbies">足球
+    <input type="checkbox" value="羽毛球" v-model="hobbies">羽毛球
+    <h2>已选中{{hobbies}}</h2>
+    <hr>
+     <!-- 值绑定 -->
+     <label v-for="item in orHobbies" >
+      <input type="checkbox" v-bind:value="item" v-model="hobbies">{{item}}
+    </label>
+    <h2>值绑定选中{{hobbies}}</h2>
+    <hr>
+
+    <select v-model="fruit">
+      <option value="香蕉">香蕉</option>
+      <option value="苹果">苹果</option>
+      <option value="葡萄">葡萄</option>
+    </select>
+    <h2>{{fruit}}</h2>
+    <hr>
+
+    <br>
+    <select v-model="fruits" multiple>
+      <option value="香蕉">香蕉</option>
+      <option value="苹果">苹果</option>
+      <option value="葡萄">葡萄</option>
+    </select>
+    <h2>按住ctrl选择{{fruits}}</h2>
+    <hr>
+    <br><br>
+   
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    var app = new Vue({
+      el:"#app",
+      data:{
+        message:'懒加载',
+        age: 0,
+        isAgree:false,  //单选框
+        hobbies:[],   //多选框
+        fruit:"苹果",
+        fruits:[],
+        orHobbies:['篮球','足球','羽毛球']
+      },
+      methods:{
+        getM:function(){
+          alert(this.message);
+        }
+      }
+    })
+  </script>
+</body>
+</html>

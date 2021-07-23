@@ -1,0 +1,10 @@
+参数:
+事件监听不传参可省略
+function(默认传event)
+
+@click.stop    阻止冒泡 点击子对象时 父对象
+.prevent    防止链接跳转
+@submit.stop.prevent
+@keyup.enter/13     键盘回车
+.once
+.native

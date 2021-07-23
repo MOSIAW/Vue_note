@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 与v-if不同的是v-show只隐藏display属性 
+        v-if隐藏整个DOM元素 
+        频繁切换时使用show,仅一次切换时使用v-if
+    -->
+    <div style="height: 100px; width: 200px;">
+        <input type="button" value="切换" @click="change">
+        <div v-show="isShow"  style="height: 20px;width: 20px; background-color: aquamarine;">222</div>
+        <input type="button" value="+1" @click="add">
+        <div v-show="age>=18" style="height: 20px;width: 20px; background-color: rgb(255, 127, 217);"> 222</div>
+        <!-- <img src="./img/1.jpg" alt="" v-show="isShow"> -->
+        <!-- <img v-show="age>=18" src="./img/1.jpg" alt=""> -->
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var s = new Vue({
+            el:"div",
+            data:{
+                isShow:false,
+                age:17
+            },
+            methods:{
+                change:function(){
+                    this.isShow = !this.isShow;
+                },
+                add:function(){
+                    this.age++;
+                }
+            }
+        })
+    </script>
+</body>
+</html>

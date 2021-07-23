@@ -1,0 +1,11 @@
+mustache语法
+v-once只能修改一次
+v-html将字符串html解析
+v-text与mustache相似
+v-pre直接显示所有内容 包含{{}}
+v-cloak:斗篷 遮盖
+    [v-cloak]{
+      display:none;
+    }
+    解析后删除此属性
+ 

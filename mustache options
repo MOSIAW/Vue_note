@@ -1,0 +1,14 @@
+胡子语法{{}}
+<!-- 可以直接写变量-->
+{{userName}}
+<!-- 可以写三元表达式 -->
+{{true?'男':'女'}}
+<!-- 可以调用函数  功能是倒叙-->
+{{userName.split("").reverse().join("")}}
+
+
+创建Vue时,options可以放哪些东西:
+el:
+data:
+methods:
+生命周期函数(new Vue过程中钩子函数回调)

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body{
+      background-color: #F4F4F4;
+    }
+    #app{
+      width: 400px;
+      background-color: #FFFFFF;
+      margin: 100px auto;
+      box-shadow: 0px 4px 20px #cfcfcf;
+      border-radius: 7px;
+    }
+    #app input{
+      padding:8px 15px;
+      color: #999999;
+      font-size: 15px;
+      border-style: none;
+      border-bottom: 0.5px solid #d6d5d5;
+      box-sizing: border-box;
+      height: 50px;
+      width: 100%;
+      outline: none;
+    }
+    input::-webkit-input-placeholder{
+      color: #e6e6e6;
+    }
+    li{
+      color: #999999;
+      border-bottom: 0.5px solid #e4e4e4;
+      font-size: 15px;
+      padding: 14px 12px;
+      list-style-type: none;
+      /* word-wrap: break-word; */
+      word-break: break-all;
+      /* flex布局 */
+      display: flex;
+      /* justify-content: row; */
+      justify-content: space-between;
+      /* position: relative; */
+    }
+    li span{
+      color: #b1b1b1;
+      font-size: 10px;
+      padding: 0 8px;
+    }
+    li span:nth-child(2){
+      flex-basis: 310px;
+    }
+    .delete{
+      /* position: absolute; */
+      top: 50%;
+      right: 20px;
+      /* transform: translateY(-50%); */
+      padding: 0 5px;
+      font-size: 12px;
+      cursor: pointer;
+      /* 隐藏效果 */
+      opacity: 0;
+    }
+    li:hover .delete{
+      opacity: 1;
+    }
+    .foot{
+      color: #b1b1b1;
+      padding:8px 12px;
+      box-sizing: border-box;
+      font-size: 12px;
+      display: inline-block;
+      border: 2 solid #333;
+      width: 100%;
+      clear: both;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <input type="text" @keyup.enter="log" v-model="message" placeholder="输入一条便签">
+    <!-- <div class="content"> -->
+
+      <li v-for="(item,index) in list">
+        <span>{{index+1}}.</span>
+        <span id="essay">{{item}}</span>
+        <span class="delete" @click="remove(index)">×</span>
+      </li>
+      <!-- 1.对齐问题 -->
+    <!-- </div> -->
+    <div class="foot" >
+      <span style="float: left;" v-show="list.length!=0">{{list.length}} item</span>
+      <div class="clear" @click="clear" style="float: right;" v-if="list.length!=0">清空</div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script> 
+    var app = new Vue({
+      el:"#app",
+      data:{
+        message:'',
+        list:[
+          "×怎么和文字中线对齐",
+          // 3，布局问题！！！！！！！
+          "解决字数太多的时候 或者多行内容aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        ]
+      },
+      methods:{
+        log:function(){
+          if(this.message != ''){
+            this.list.push(this.message);
+            this.message='';
+          }
+        },
+        clear:function(){
+          this.list=[];
+          // 2.为什么=''时 清空后不能再添加 =[]却可以
+        },
+        remove:function(index){
+          // splice删除某个
+          this.list.splice(index,1);
+        }
+      }
+    })
+  </script>
+</body>
+</html>

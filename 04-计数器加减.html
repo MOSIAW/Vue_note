@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>计数器加减</title>
+    <!-- 事件监听click -->
+    <style>
+        .box{
+            height: 100px;
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <button v-on:click="sub">-</button>
+        <span v-text="num"></span>
+        <span >{{num}}</span>
+        <button @click="add">+</button>
+        <input type="text" @keyup.enter="alert">   
+        <!-- 按下回车键响应函数 -->
+    </div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    var a = new Vue({
+        el:"#box",
+        data:{
+            num:1
+        },
+        methods:{
+            add:function(){
+                if(this.num<10){
+                    this.num++;
+                }
+                else{
+                    alert("到底了");
+                }
+            },
+            sub:function(){
+                if(this.num>0){
+                    this.num--;
+                }
+                else{
+                    alert("到底了");
+                }
+            }
+        }
+    })
+</script>
+
+</body>
+</html>

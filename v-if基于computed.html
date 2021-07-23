@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>登录 账号邮箱切换 v-else  key虚拟dom复用</title>
+</head>
+<body>
+  <div id="app">
+    <div class="first" v-if="isUser"> 
+      <label for="number">用户号码</label>
+      <input type="text" name="number" placeholder="号码" key="a">
+    </div>
+    <div class="second" v-else="!isUser">
+      <label for="email">邮箱</label>
+      <input type="text" name="email" placeholder="邮箱" key='b'>
+    </div>
+<!-- key不相同切换时内容不会复用(保留)
+     key:高效更新虚拟DOM
+-->
+
+    <button @click="isUser =! isUser">切换</button>
+  </div>
+</body>
+<!-- 开发环境版本，包含了有帮助的命令行警告 -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<!-- 官网提供的axios在线地址 -->
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+  var app = new Vue({
+    el:"#app",
+    data:{
+      isUser:true
+    },
+    // computed:{
+    //   result(){
+    //     let message = '';
+    //     if(this.show >= 90){
+    //       message = '优秀'
+    //     }
+    //     else if(this.show >= 80){
+    //       message = 'B'
+    //     }
+    //     else{
+    //       message = 'D'
+    //     }
+    //     return message
+    //   }
+    // }
+  })
+</script>
+</html>

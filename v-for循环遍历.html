@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <!-- 注意：如果使用v-for迭代数字的话，前面 count 的值从 1 开始-->
+    <p v-for="count in 4">
+      这是第{{count}}次循环 从1开始
+    </p>
+    <p v-for="(item,ind) in list">
+      索引{{ind+1}}  每项{{item}}   
+      格式value key index
+    </p>
+    <ul>
+      <li v-for="it in vegetable" v-bind:title="it.name">
+        {{it.name}}
+      </li>
+    </ul>
+  </div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+  var app = new Vue({
+    el:'#app',
+    data:{
+      list:[1,2,3,4,5],
+      vegetable:[
+        {name:"番茄炒蛋"},
+        {name:"蛋炒饭"}
+      ]
+    },
+    methods:{
+      add:function(){
+        this.vegetable.push( {name:"炒青菜"});  //添加
+      },
+      remove:function(){
+        this.vegetable.shift();  //删除最左
+      }
+    }
+  })
+</script>
+
+</body>
+</html>

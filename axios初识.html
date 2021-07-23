@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .title_img{
+      text-align: center;
+    }
+    .tianzhidao{
+      height: 80px;
+      margin-top: 100px;
+      margin-bottom: 20px;
+    }
+    .search{
+      margin: auto;
+      width: 570px;
+      text-align: center;
+    }
+    .input_txt{
+      height: 40px;
+      width: 480px;
+      line-height: 40px;
+      border: solid 1px #333;
+      border-right: 0;
+      outline: none;
+      padding-left: 12px;
+      box-sizing: border-box;
+    }
+    .input_btn{
+      height: 40px;
+      width: 90px;
+      vertical-align: middle;
+      margin-left: -2px;
+    }
+    .city_a{
+      text-align: left;
+      margin-top: 5px;
+      margin-bottom: 50px;
+    }
+    .city_a a{
+      /* background-color: brown; */
+      font-size: 13px;
+      margin: 0 13px 0 2px;
+      text-decoration: none;
+    }
+    .weather_list{
+      margin: auto;
+      list-style: none;
+      display: flex;
+      justify-content: center;
+    }
+    .weather_list li{
+      text-align: center;
+      padding: 0 50px;
+      border-right: solid 1px #555;
+    }
+    .weather_list li:last-child{
+      border-right: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <div class="title_img">
+      <img class="tianzhidao" src="./img/天知道.jpg" alt="">
+    </div>
+    <div class="search">
+      <input type="text" @keyup.enter="searchWeather" class="input_txt" placeholder="请输入查询的地址"><button class="input_btn" >搜 索</button>
+      <div class="city_a">
+        <a href="">北京</a>
+        <a href="">上海</a>
+        <a href="">广州</a>
+      </div>
+    </div>
+    <ul class="weather_list">
+      <li>
+        <h1>多云</h1>
+        <h6>气温</h6>
+        <p>日期</p>
+      </li>
+      <li>
+        <h1>多云</h1>
+        <h6>气温</h6>
+        <p>日期</p>
+      </li>
+      <li>
+        <h1>多云</h1>
+        <h6>气温</h6>
+        <p>日期</p>
+      </li>
+      <li>
+        <h1>多云</h1>
+        <h6>气温</h6>
+        <p>日期</p>
+      </li>
+      <li>
+        <h1>多云</h1>
+        <h6>气温</h6>
+        <p>日期</p>
+      </li>
+    </ul>
+  </div>
+
+
+</body>
+
+<!-- 开发环境版本，包含了有帮助的命令行警告 -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<!-- 官网提供的axios在线地址 -->
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<!-- 自己的js -->  
+<script src="./js/main.js"></script>
+
+</html>
